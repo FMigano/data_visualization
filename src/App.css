@@ -1,0 +1,21 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0;
+  /* center handled by dashboard container */
+}
+
+.logo {
+  height: 3.5rem;
+  padding: 0.6rem;
+  will-change: filter;
+  transition: transform 240ms ease, filter 240ms ease;
+}
+.logo:hover { transform: translateY(-3px); filter: drop-shadow(0 6px 18px rgba(99,102,241,0.18)); }
+.logo.react:hover { filter: drop-shadow(0 6px 18px rgba(97,218,255,0.14)); }
+
+/* card */
+.card { /* keep baseline; detailed styles defined in index.css */ }
+
+/* read-the-docs */
+.read-the-docs { color: #9ca3af; font-size: 14px; margin-top: 8px; }

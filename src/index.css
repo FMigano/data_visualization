@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+/* Light theme overhaul and modern styling */
+
+:root {
+  --bg-100: #f7fafc;
+  --bg-200: #eef2f7;
+  --panel: #ffffff;
+  --text: #0b1220;               /* dark readable text */
+  --muted: #566170;
+  --accent: #6c5ce7;
+  --glass: rgba(11,18,32,0.04);
+  --glass-strong: rgba(11,18,32,0.06);
+  --glass-border: rgba(11,18,32,0.06);
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: linear-gradient(180deg, var(--bg-100) 0%, var(--bg-200) 100%);
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.4;
+}
+
+/* Dashboard layout */
+.dashboard { padding: 48px 20px; min-height: 100vh; }
+.container { max-width: 1200px; margin: 0 auto; display: grid; gap: 20px; }
+
+/* Header */
+.header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 6px; }
+.header-left .title { 
+  margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.02em; color: var(--text);
+}
+.header-left .subtitle { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+
+/* Badges */
+.badges { display: flex; gap: 10px; align-items: center; }
+.badge { padding: 8px 12px; border-radius: 999px; font-weight: 600; font-size: 13px; border: 1px solid var(--glass-border); background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,250,0.9)); color: var(--muted); box-shadow: var(--shadow); }
+.badge-blue { background: linear-gradient(180deg,#eef2ff,#eef7ff); color: #2b3aeb; border-color: rgba(99,102,241,0.08); }
+.badge-green { background: linear-gradient(180deg,#f0fff4,#f7fff8); color: #16a34a; border-color: rgba(16,185,129,0.06); }
+
+/* Card */
+.card {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--glass-border);
+}
+
+/* Section head */
+.section-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
+.section-title { margin:0; font-size:18px; font-weight:700; color:var(--text); }
+.icon-btn { background: transparent; border: none; padding: 8px; border-radius: 8px; cursor: pointer; color: var(--muted); }
+.icon-btn:hover { background: rgba(98,88,255,0.08); color: var(--accent); }
+
+/* charts */
+.chart-section { margin-top: 8px; }
+.chart-title { margin: 0 0 8px 0; font-size: 15px; color: var(--text); font-weight:700; }
+.chart-wrapper {
+  height: 340px;
+  background: linear-gradient(180deg, rgba(250,250,252,0.9), rgba(255,255,255,0.95));
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,0.02), 0 8px 20px rgba(15,23,42,0.04);
+  border: 1px solid rgba(11,18,32,0.04);
+  backdrop-filter: blur(4px);
+}
+
+/* subtle larger wrapper variants */
+.chart-wrapper.tall { height: 360px; padding: 12px; }
+.chart-wrapper.extra-tall { height: 520px; padding: 12px; }
+
+/* custom tooltip */
+.custom-tooltip {
+  background: #ffffff;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+  box-shadow: 0 8px 24px rgba(14,20,35,0.08);
+  border: 1px solid rgba(11,18,32,0.04);
+}
+.custom-tooltip .tt-header {
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+.custom-tooltip .tt-row { display:flex; align-items:center; gap:8px; margin:4px 0; }
+.custom-tooltip .tt-row .dot { width:10px; height:10px; border-radius:50%; display:inline-block; box-shadow: 0 0 0 2px rgba(11,18,32,0.02) inset; }
+.custom-tooltip .tt-name { color: var(--text); font-weight: 600; }
+.custom-tooltip .tt-value { color: var(--accent); font-weight: 800; }
+
+/* legend tweaks (when recharts renders html legend) */
+.recharts-legend-wrapper {
+  color: var(--text) !important;
+  font-size: 13px !important;
+}
+
+/* improve axis tick colors inside chart SVG groups */
+.recharts-cartesian-axis-tick tspan { 
+  fill: var(--muted) !important; font-size: 13px !important; 
+}
+
+/* layout: two-column on wide screens */
+.layout { display: grid; grid-template-columns: 1fr 380px; gap: 20px; align-items: start; }
+@media (max-width: 1100px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+/* right column small-card spacing */
+.right .card { margin-bottom: 16px; }
+
+/* ensure Recharts SVG text uses Inter and high contrast */
+.recharts-text, .recharts-legend-item text, .recharts-cartesian-axis-tick tspan {
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial !important;
+  fill: var(--text) !important;
+}
+
+/* label styles inside charts */
+.recharts-label, .recharts-label text {
+  fill: var(--text) !important;
+  font-weight: 700;
+  font-size: 12px !important;
+}
+
+/* lighten bar rect hover and transitions */
+.recharts-bar-rect {
+  transition: opacity 140ms ease, filter 140ms ease;
+  will-change: opacity, filter;
+}
+.recharts-bar-rect:hover {
+  filter: brightness(0.98);
+  opacity: 1 !important;
+}
+
+/* make legend swatches larger and more readable */
+.recharts-legend-item rect {
+  width: 12px;
+  height: 12px;
+  rx: 3;
+  ry: 3;
+}
+.recharts-legend-item text { fill: var(--muted) !important; }
+
+/* ensure tooltip font uses Inter and high contrast */
+.custom-tooltip, .custom-tooltip * { font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial !important; }
+
+/* spacing and responsive tweaks */
+.chart-title { margin-bottom: 10px; }
+@media (max-width: 880px) {
+  .header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .chart-wrapper.extra-tall { height: 420px; }
+}
+
+/* small improvements for lists & insights */
+.insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+.insight { padding: 12px; border-radius: 10px; background: linear-gradient(180deg,#ffffff,#fbfdff); border: 1px solid rgba(11,18,32,0.04); }
+.insight h4 { margin: 0 0 6px 0; font-size: 13px; color: var(--text); }
+.insight p { margin: 0; color: var(--muted); font-size: 13px; }
+
+/* list items in comparison */
+.comparison-grid ul { list-style: none; padding: 0; margin: 0; }
+.comparison-grid li { display:flex; justify-content:space-between; padding: 6px 0; border-bottom: 1px dashed rgba(11,18,32,0.03); color: var(--muted); font-size: 13px; }
